@@ -5,3 +5,13 @@ Content-Type: application/json
     "username": "testuser",
     "password": "testpassword"
 }
+
+###createuser
+POST http://localhost:5000/signup
+Content-Type: application/json
+
+{"user": {
+    "name": "testuser",
+    "password": "testpassword",
+    "email" : "sfdgfhgjh"
+}}
