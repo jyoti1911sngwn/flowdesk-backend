@@ -27,12 +27,11 @@ router.post("/login", async (req, res) => {
     "UPDATE users SET refresh_token= $1, access_token=$2 WHERE id =$3",
     [refreshToken, accesstoken, dbuser.id],
   );
-  res.status(201).json({ comparePass, accesstoken, refreshToken });
+  res.status(201).json({ comparePass, dbuser });
 });
 
 router.post("/signup", async (req, res) => {
   const { user } = req.body;
-  console.log("user::", user);
   const hasedPass = await bcrypt.hash(user.password, 10);
   const newuser = await pool.query(
     "INSERT INTO users (username,email,password_hash) VALUES ($1, $2, $3) RETURNING id, email",
